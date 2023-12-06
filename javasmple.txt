@@ -1,0 +1,19 @@
+// server.js
+const express = require('express');
+const bodyParser = require('body-parser');
+const app = express();
+const port = 3000;
+
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.post('/process-payment', (req, res) => {
+  console.log('Form data:', req.body);
+  // Perform processing (e.g., store data in a database)
+  res.send('Payment processed successfully!');
+});
+
+app.use(express.static('public')); // Assuming your HTML and CSS are in a folder named 'public'
+
+app.listen(port, () => {
+  console.log(`Server is running at http://localhost:${port}`);
+});

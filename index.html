@@ -1,0 +1,185 @@
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <script src="script.js">
+  </script>
+
+  <!-- Add this script to the head section of your HTML -->
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // Get the form element
+    var paymentForm = document.getElementById('paymentForm');
+
+    // Attach event listener to the form submission
+    paymentForm.addEventListener('submit', function (event) {
+      // Prevent the default form submission
+      event.preventDefault();
+
+      // Perform custom validation before submitting the form
+      if (validateForm()) {
+        // If validation passes, you can submit the form
+        paymentForm.submit();
+      }
+    });
+
+    // Custom validation function
+    function validateForm() {
+      var nameInput = document.getElementById('name');
+      var phoneInput = document.getElementById('phone');
+      var emailInput = document.getElementById('email');
+      var upiInput = document.getElementById('upi');
+
+      // Example: Check if the name contains only letters
+      if (!/^[a-zA-Z ]+$/.test(nameInput.value)) {
+        alert('Please enter a valid name with only letters.');
+        return false;
+      }
+
+      // Example: Check if the phone number is a valid format
+      if (!/^\d{10}$/.test(phoneInput.value)) {
+        alert('Please enter a valid 10-digit phone number.');
+        return false;
+      }
+
+      // Example: Check if the email is a valid format
+      if (!/\S+@\S+\.\S+/.test(emailInput.value)) {
+        alert('Please enter a valid email address.');
+        return false;
+      }
+
+      // You can add more custom validation for the UPI ID or other fields
+
+      // If all validation passes, return true
+      return true;
+    }
+  });
+</script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment Form</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f8f9fa; /* Light Gray Background */
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+
+    .container {
+      width: 80%;
+      max-width: 400px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      color: #2f00ff; /* Corporate Blue Color */
+      margin: 0;
+    }
+
+    h2 {
+      color: #333;
+      margin-top: 5px;
+    }
+
+    main {
+      background-color: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 30px;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    main:hover {
+      transform: scale(1.02);
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: #555;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 12px; /* Added more spacing between fields */
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      transition: border-color 0.3s ease-in-out;
+    }
+
+    input:focus {
+      border-color: #007bff; /* Corporate Blue Color on Focus */
+    }
+
+    button {
+      background-color: #007bff; /* Corporate Blue Color */
+      color: #fff;
+      padding: 12px 18px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease-in-out;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    button:hover {
+      background-color: #0056b3; /* Darker Shade on Hover */
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1 aria-label="Welcome">WELCOME,</h1>
+      <h2>Enter Details and Make a Payment</h2>
+    </header>
+
+    <main>
+      <form id="paymentForm" action="/process-payment" method="post">
+        <div class="form-group">
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+        </div>
+
+        <div class="form-group">
+          <label for="phone">Phone Number:</label>
+          <input type="tel" id="phone" name="phoneNumber" placeholder="Enter your phone number" required>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email Address:</label>
+          <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+        </div>
+
+        <div class="form-group">
+          <label for="upi">UPI ID:</label>
+          <input type="text" id="upi" name="upiId" placeholder="Enter your UPI ID" required>
+        </div>
+
+        <button type="submit">Proceed to Payment</button>
+      </form>
+    </main>
+  </div>
+</body>
+</html>
